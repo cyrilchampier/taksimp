@@ -1,4 +1,4 @@
 class TrackingController < ApplicationController
-  def today
+  def show
   end
 end

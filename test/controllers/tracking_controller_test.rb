@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class TrackingControllerTest < ActionDispatch::IntegrationTest
-  test "should get today" do
-    get tracking_today_url
+  test "should get show" do
+    get tracking_show_url
     assert_response :success
   end
 
