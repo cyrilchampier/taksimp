@@ -2,7 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 
 class Task extends React.Component {
-  state = { error_message: '' };
+  HEIGHT = '100px'
+
+  state = { error_message: '' }
 
   createWorkInstance = () => {
     jQuery.ajax({
@@ -25,7 +27,7 @@ class Task extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="text-center" style={{ backgroundColor: this.props.color }}>
+        <div className="text-center" style={{ backgroundColor: this.props.color, height: this.HEIGHT  }}>
           { this.state.error_message &&
           <div className="alert alert-danger" role="alert">
             {this.state.error_message}
