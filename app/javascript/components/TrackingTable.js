@@ -21,7 +21,7 @@ class TrackingTable extends React.Component {
             )}
           </div>
 
-          {/* Today TODO */}
+          {/* Today to be done */}
           <div className="row border-bottom">
             <div className="col-1 border-right">
               TODO
@@ -33,7 +33,7 @@ class TrackingTable extends React.Component {
             )}
           </div>
 
-          {/* Today DONE */}
+          {/* Today done */}
           <div className="row border-bottom">
             <div className="col-1 border-right">
               DONE
@@ -45,7 +45,7 @@ class TrackingTable extends React.Component {
             )}
           </div>
 
-          {/* Yesterday DONE */}
+          {/* Yesterday done */}
           <div className="row border-bottom">
             <div className="col-1 border-right">
               Yesterday
