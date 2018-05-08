@@ -1,18 +1,25 @@
-h1 Configuration
+#ts-configuration
+  h1 Configuration
 
-/ TODO: transform this in react
-- Project.all.each do |project|
-  h2 style="color: #{project.color}"
-    = project.name
+  p
+    = link_to 'Doctolib Dev work distribution',
+            'https://github.com/doctolib/doctolib/wiki/Doctolib-Engineering-Manager-Academy#work-distribution',
+            target: "_blank"
 
-  - project.tasks.each do |task|
-    = "#{task.name}: #{task.description}"
+  / TODO: transform this in react
+  - Project.all.each do |project|
+    h2 style="color: #{project.color}"
+      = project.name
 
-  = form_with(model: project.tasks.build) do |task_form|
-    = task_form.hidden_field :project_id
-    = task_form.text_field :name
-    = task_form.text_field :description
-    = task_form.submit '+'
+    - project.tasks.each do |task|
+      .ts-task
+        = "#{task.name}: #{task.description}"
+
+    = form_with(model: project.tasks.build) do |task_form|
+      = task_form.hidden_field :project_id
+      = task_form.text_field :name
+      = task_form.text_field :description
+      = task_form.submit '+'
 
 
-= react_component("HelloWorld", { name: "Hello" })
+  = react_component("HelloWorld", { name: "Hello" })
