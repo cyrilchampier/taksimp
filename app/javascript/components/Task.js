@@ -25,7 +25,7 @@ class Task extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="col-3 border text-center" style={{ backgroundColor: this.props.color }}>
+        <div className="text-center" style={{ backgroundColor: this.props.color }}>
           { this.state.error_message &&
           <div className="alert alert-danger" role="alert">
             {this.state.error_message}

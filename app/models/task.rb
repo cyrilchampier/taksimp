@@ -3,4 +3,13 @@ class Task < ApplicationRecord
 
   # Should validate that sum(work.day_percentage) < 100
   has_many :works
+
+  def color
+    # TODO: should have a slight variation based on name
+    project&.color
+  end
+
+  def as_json(*)
+    super.merge(color: color)
+  end
 end
