@@ -7,4 +7,12 @@ class Work < ApplicationRecord
   def done?
     !!done_on
   end
+
+  def color
+    task&.color
+  end
+
+  def as_json(*)
+    super.merge(color: color)
+  end
 end
