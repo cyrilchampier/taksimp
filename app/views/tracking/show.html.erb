@@ -1,9 +1,8 @@
-<h1>Tracking#show</h1>
+<%= react_component("Navbar", { activePage: 'Tracking' }) %>
 
-<%= react_component("TrackingTable",
-        {
-            tasks: Task.all,
-            works_todo: Work.pending.all,
-            works_done: Work.done.all
-        })
-  %>
+<%= react_component("TrackingTable", {
+    tasks: Task.all,
+    works_todo: Work.pending.all,
+    works_done: Work.done.all
+})
+%>
