@@ -1,0 +1,31 @@
+h1 Tracking#show
+
+/ TODO: Should that whole file be a react component ?
+
+.container-fluid
+
+  / Pending tasks
+  .row.border-top.border-bottom
+    .col-1.border-right
+      = "PENDING"
+    - Task.all.each do |task|
+      .col
+        = react_component("Task", { name: task.name, description: task.description, color: task.project.color })
+
+
+  / Today TODO
+  .row.border-bottom
+    .col-1.border-right
+      = "TODO"
+
+
+  / Today DONE
+  .row.border-bottom
+    .col-1.border-right
+      = "DONE"
+
+
+  / Yesterday DONE, etc...
+  .row.border-bottom
+    .col-1.border-right
+      = "Yesterday"

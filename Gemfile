@@ -40,8 +40,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'webpacker'
 gem 'react-rails'
 
-# Slim for html
+# Slim for HTML
 gem 'slim-rails'
+
+# Bootstrap for CSS
+gem 'bootstrap'
 
 
 group :development, :test do
