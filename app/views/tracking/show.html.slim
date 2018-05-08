@@ -10,7 +10,7 @@ h1 Tracking#show
       = "PENDING"
     - Task.all.each do |task|
       .col
-        = react_component("Task", { name: task.name, description: task.description, color: task.project.color })
+        = react_component("Task", { id: task.id, name: task.name, description: task.description, color: task.project.color })
 
 
   / Today TODO
