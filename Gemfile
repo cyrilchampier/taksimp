@@ -41,6 +41,7 @@ gem 'webpacker'
 gem 'react-rails'
 
 # Slim for HTML
+# TODO: should be removed: since we use react, we dont need slim
 gem 'slim-rails'
 
 # Bootstrap for CSS
