@@ -10,7 +10,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <nav className="nav nav-pills nav-fill p-3">
+        <nav className="nav nav-pills nav-fill p-3 sticky-top">
           {this.PAGES.map((page) =>
             <a key={page.name}
                className={"nav-item nav-link " + (page.name === this.props.activePage ? "active" : "")}

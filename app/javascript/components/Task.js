@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Work from "./Work"
 
 class Task extends React.Component {
-  HEIGHT = '100px'
+  HEIGHT = '150px'
 
   state = { errorMessage: '' }
 
@@ -16,12 +16,16 @@ class Task extends React.Component {
     }
   }
 
+  // TODO: that component should be a card, to have a nicer presentation than the current row-cols
   render() {
     return (
       <React.Fragment>
-        <div className="text-center" style={{ backgroundColor: this.props.color, height: this.HEIGHT }}>
+        <div className="text-center" style={{
+          backgroundColor: this.props.color,
+          height: this.HEIGHT
+        }}>
           {this.state.errorMessage &&
-          <div className="alert alert-danger" role="alert">
+          <div className="alert alert-danger position-absolute w-100" role="alert">
             {this.state.errorMessage}
           </div>
           }
@@ -31,7 +35,7 @@ class Task extends React.Component {
           <div>
             {this.props.description}
           </div>
-          <button className="btn btn-sm btn-outline-light" onClick={this.createWork}>
+          <button className="btn btn-sm btn-outline-light align-bottom" onClick={this.createWork}>
             Work
           </button>
         </div>
