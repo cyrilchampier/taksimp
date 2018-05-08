@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def create
-    Task.create!(task_params)
+    render_json_save(Task.new(task_params))
   end
 
   private
