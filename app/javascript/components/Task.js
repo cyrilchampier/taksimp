@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 class Task extends React.Component {
   HEIGHT = '100px'
 
-  state = { error_message: '' }
+  state = { errorMessage: '' }
 
   createWorkInstance = () => {
     jQuery.ajax({
@@ -12,14 +12,15 @@ class Task extends React.Component {
       url: "/works",
       data: { work: { task_id: this.props.id } },
       success: (data) => {
-        if (data.success) {
+        let {success, object, error_message} = data
+        if (success) {
           window.location.reload()
         } else {
-          this.setState({ error_message: data.error_message })
+          this.setState({ errorMessage: error_message })
         }
       },
       error: (jqXHR, textStatus, errorThrown) =>  {
-        this.setState({ error_message: errorThrown })
+        this.setState({ errorMessage: errorThrown })
       }
     })
   }
@@ -28,9 +29,9 @@ class Task extends React.Component {
     return (
       <React.Fragment>
         <div className="text-center" style={{ backgroundColor: this.props.color, height: this.HEIGHT  }}>
-          { this.state.error_message &&
+          { this.state.errorMessage &&
           <div className="alert alert-danger" role="alert">
-            {this.state.error_message}
+            {this.state.errorMessage}
           </div>
           }
           <div className="font-weight-bold">

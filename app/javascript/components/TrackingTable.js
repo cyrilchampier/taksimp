@@ -26,7 +26,7 @@ class TrackingTable extends React.Component {
             <div className="col-1 border-right">
               TODO
             </div>
-            {this.props.works_todo.map((work) =>
+            {this.props.worksTodo.map((work) =>
               <div className="col border p-0" key={work.id}>
                 <Work {...work} />
               </div>
@@ -38,7 +38,7 @@ class TrackingTable extends React.Component {
             <div className="col-1 border-right">
               DONE
             </div>
-            {this.props.works_done.map((work) =>
+            {this.props.worksDone.map((work) =>
               <div className="col border p-0" key={work.id}>
                 <Work {...work} />
               </div>
@@ -62,10 +62,10 @@ TrackingTable.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.oneOf([Task])
   })),
-  works_todo: PropTypes.arrayOf(PropTypes.shape({
+  worksTodo: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.oneOf([Work])
   })),
-  works_done: PropTypes.arrayOf(PropTypes.shape({
+  worksDone: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.oneOf([Work])
   })),
 }
