@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb877f15-0a37-4535-b0dd-6afb08a8194c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/Task.js" afterPath="$PROJECT_DIR$/app/javascript/components/Task.js" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/TrackingTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/TrackingTable.js" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/Work.js" afterPath="$PROJECT_DIR$/app/javascript/components/Work.js" />
+      <change beforePath="$PROJECT_DIR$/app/views/configuration/show.html.slim" afterPath="$PROJECT_DIR$/app/views/configuration/show.html.slim" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -75,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Task.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Task.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="29" column="81" lean-forward="false" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
+            <state relative-caret-position="431">
+              <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
                 <element signature="e#181#605#0" expanded="true" />
@@ -94,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Work.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="101" lean-forward="true" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="101" />
+              <caret line="9" column="101" lean-forward="false" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="101" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -102,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.slim" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.html.slim" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/configuration/show.html.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="50" lean-forward="false" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+            <state relative-caret-position="150">
+              <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -213,10 +211,10 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/views/tracking/show.html.erb" />
         <option value="$PROJECT_DIR$/app/models/work.rb" />
-        <option value="$PROJECT_DIR$/app/views/configuration/show.html.slim" />
         <option value="$PROJECT_DIR$/app/javascript/components/Work.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/TrackingTable.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/Task.js" />
+        <option value="$PROJECT_DIR$/app/views/configuration/show.html.slim" />
       </list>
     </option>
   </component>
@@ -315,6 +313,13 @@
               <item name="taksimp" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="taksimp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="taksimp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="configuration" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="taksimp" type="b2602c69:ProjectViewProjectNode" />
@@ -964,22 +969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tracking/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/configuration/show.html.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="50" lean-forward="false" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1001,7 +990,7 @@
     <entry file="file://$PROJECT_DIR$/app/javascript/components/Work.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="101" lean-forward="true" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="101" />
+          <caret line="9" column="101" lean-forward="false" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="101" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
@@ -1010,14 +999,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/Task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="29" column="81" lean-forward="false" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
+        <state relative-caret-position="431">
+          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
             <element signature="e#181#605#0" expanded="true" />
             <element signature="e#317#479#0" expanded="true" />
             <element signature="e#531#594#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tracking/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/configuration/show.html.slim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
