@@ -1,35 +1,26 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Work from "./Work"
 
 class Task extends React.Component {
   HEIGHT = '100px'
 
   state = { errorMessage: '' }
 
-  createWorkInstance = () => {
-    jQuery.ajax({
-      type: "POST",
-      url: "/works",
-      data: { work: { task_id: this.props.id } },
-      success: (data) => {
-        let {success, object, error_message} = data
-        if (success) {
-          window.location.reload()
-        } else {
-          this.setState({ errorMessage: error_message })
-        }
-      },
-      error: (jqXHR, textStatus, errorThrown) =>  {
-        this.setState({ errorMessage: errorThrown })
-      }
-    })
+  createWork = async () => {
+    let { success, object, error_message } = await Work.createRailsInstance(this.props.id)
+    if (success) {
+      window.location.reload()
+    } else {
+      this.setState({ errorMessage: error_message })
+    }
   }
 
   render() {
     return (
       <React.Fragment>
-        <div className="text-center" style={{ backgroundColor: this.props.color, height: this.HEIGHT  }}>
-          { this.state.errorMessage &&
+        <div className="text-center" style={{ backgroundColor: this.props.color, height: this.HEIGHT }}>
+          {this.state.errorMessage &&
           <div className="alert alert-danger" role="alert">
             {this.state.errorMessage}
           </div>
@@ -40,7 +31,7 @@ class Task extends React.Component {
           <div>
             {this.props.description}
           </div>
-          <button className="btn btn-sm btn-outline-light" onClick={this.createWorkInstance}>
+          <button className="btn btn-sm btn-outline-light" onClick={this.createWork}>
             Work
           </button>
         </div>
