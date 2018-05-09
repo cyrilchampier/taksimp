@@ -38,18 +38,19 @@ class TrackingTable extends React.Component {
             <div className="col-1 border-right">
               DONE
             </div>
-            {this.props.worksDone.map((work) =>
-              <div className="col border p-0" key={work.id}>
+            {this.props.worksDone.map((work) => {
+              let colClass = `col-${Math.ceil(work.day_percentage / 10)}`
+              return (<div className={`${colClass} border p-0`} key={work.id}>
                 <Work {...work} />
-              </div>
-            )}
+              </div>)
+            })}
           </div>
 
           {/* Previously done */}
           {this.props.past7Days.map((day_dones, index) =>
             <div className="row border-bottom" key={`${index}`}>
               <div className="col-1 border-right">
-                {`Previously (-${index+1})`}
+                {`Previously (-${index + 1})`}
               </div>
               {day_dones.map((work) =>
                 <div className="col border p-0" key={work.id}>
