@@ -8,7 +8,8 @@ class Task extends React.Component {
   state = { errorMessage: '' }
 
   createWork = async () => {
-    let { success, object, error_message } = await Work.createRailsInstance(this.props.id)
+    let { success, object, error_message } =
+      await Work.createRailsInstance({task_id: this.props.id, description: 'truc' })
     if (success) {
       window.location.reload()
     } else {
@@ -35,7 +36,7 @@ class Task extends React.Component {
           <div>
             {this.props.description}
           </div>
-          <button className="btn btn-sm btn-outline-light align-bottom" onClick={this.createWork}>
+          <button className="btn btn-sm btn-outline-light" onClick={this.createWork}>
             Work
           </button>
         </div>

@@ -1,8 +1,8 @@
 class Work < ApplicationRecord
   belongs_to :task
 
-  scope :pending, -> { where.not(done_on: nil) }
-  scope :done, -> { where(done_on: nil) }
+  scope :pending, -> { where(done_on: nil) }
+  scope :done, -> { where.not(done_on: nil) }
 
   def done?
     !!done_on
