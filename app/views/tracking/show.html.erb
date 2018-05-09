@@ -3,6 +3,7 @@
 <%= react_component("TrackingTable", {
     tasks: Task.all,
     worksTodo: Work.pending.all,
-    worksDone: Work.done.all
+    worksDone: Work.done.all,
+    past7Days: Work.past_days_done(7)
 })
 %>

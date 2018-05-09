@@ -45,12 +45,19 @@ class TrackingTable extends React.Component {
             )}
           </div>
 
-          {/* Yesterday done */}
-          <div className="row border-bottom">
-            <div className="col-1 border-right">
-              Yesterday
+          {/* Previously done */}
+          {this.props.past7Days.map((day_dones, index) =>
+            <div className="row border-bottom" key={`${index}`}>
+              <div className="col-1 border-right">
+                {`Previously (-${index+1})`}
+              </div>
+              {day_dones.map((work) =>
+                <div className="col border p-0" key={work.id}>
+                  <Work {...work} />
+                </div>
+              )}
             </div>
-          </div>
+          )}
 
         </div>
       </React.Fragment>
@@ -58,16 +65,29 @@ class TrackingTable extends React.Component {
   }
 }
 
+// TODO: propTypes alias for `arrayOf.shape.type.oneOf.Task` ?
 TrackingTable.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.oneOf([Task])
-  })),
-  worksTodo: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.oneOf([Work])
-  })),
-  worksDone: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.oneOf([Work])
-  })),
+  tasks:
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.oneOf([Task])
+      })),
+  worksTodo:
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.oneOf([Work])
+      })),
+  worksDone:
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.oneOf([Work])
+      })),
+  past7Days:
+    PropTypes.arrayOf(
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          type: PropTypes.oneOf([Work])
+        })))
 }
 
 export default TrackingTable

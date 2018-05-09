@@ -37,6 +37,7 @@ class Work extends React.Component {
   }
 
   doneButtons = () => {
+    // TODO: we should continue to display buttons to change it dynamically, even once already "done"
     if (this.props.done_on === null) {
       return (
         <div className="btn-group" role="group">
