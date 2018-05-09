@@ -8,6 +8,7 @@ class Task extends React.Component {
   state = { errorMessage: '' }
 
   createWork = async () => {
+    // TODO: we should try around the await, or tell jQuery not to raise in case of 404 or 500
     let { success, object, error_message } =
       await Work.createRailsInstance({task_id: this.props.id, description: 'truc' })
     if (success) {
