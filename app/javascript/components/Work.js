@@ -4,6 +4,13 @@ import PropTypes from "prop-types"
 class Work extends React.Component {
   HEIGHT = '100px'
 
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string,
+    color: PropTypes.string.isRequired,
+    done_on: PropTypes.string
+  }
+
   // Returns { success, object, error_message }
   static createRailsInstance = ({ task_id, description }) => {
     return jQuery.ajax({
@@ -37,7 +44,7 @@ class Work extends React.Component {
 
   doneButtons = () => {
     // TODO: we should continue to display buttons to change it dynamically, even once already "done"
-    if (this.props.done_on === null) {
+    // if (this.props.done_on === null) {
       return (
         <div className="btn-group" role="group">
           {[25, 50, 75].map((percentage) =>
@@ -47,7 +54,7 @@ class Work extends React.Component {
           )}
         </div>
       )
-    }
+    // }
   }
 
   render() {
@@ -67,13 +74,6 @@ class Work extends React.Component {
       </React.Fragment>
     )
   }
-}
-
-Work.propTypes = {
-  id: PropTypes.number.isRequired,
-  description: PropTypes.string,
-  color: PropTypes.string.isRequired,
-  done_on: PropTypes.string
 }
 
 export default Work

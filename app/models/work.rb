@@ -34,7 +34,8 @@ class Work < ApplicationRecord
     works_done = works_done.where.not(id: id) if id?
     percentage_left = 100 - works_done.pluck(:day_percentage).sum
     if percentage_left - day_percentage < 0
-      errors[:day_percentage] << "Only Superman can work more than 100%, currently #{percentage_left}."
+      errors[:day_percentage] <<
+        "Only Superman can work more than 100%, currently #{percentage_left}%, cannot add #{day_percentage}%."
     end
   end
 end

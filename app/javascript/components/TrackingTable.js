@@ -1,9 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Task from "./Task"
-import Work from "./Work"
+import DayWorks from "./DayWorks"
+
 
 class TrackingTable extends React.Component {
+
+  static propTypes = {
+    tasks: PropTypes.arrayOf(PropTypes.shape(Task.propTypes)).isRequired,
+    worksTodo: DayWorks.worksPropTypes.isRequired,
+    worksDone: DayWorks.worksPropTypes.isRequired,
+    past7Days: PropTypes.arrayOf(DayWorks.worksPropTypes.isRequired),
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -22,73 +31,20 @@ class TrackingTable extends React.Component {
           </div>
 
           {/* Today to be done */}
-          <div className="row border-bottom">
-            <div className="col-1 border-right">
-              TODO
-            </div>
-            {this.props.worksTodo.map((work) =>
-              <div className="col border p-0" key={work.id}>
-                <Work {...work} />
-              </div>
-            )}
-          </div>
+          <DayWorks name='TODO' works={this.props.worksTodo}/>
 
           {/* Today done */}
-          <div className="row border-bottom">
-            <div className="col-1 border-right">
-              DONE
-            </div>
-            {this.props.worksDone.map((work) => {
-              let colClass = `col-${Math.ceil(work.day_percentage / 10)}`
-              return (<div className={`${colClass} border p-0`} key={work.id}>
-                <Work {...work} />
-              </div>)
-            })}
-          </div>
+          <DayWorks name='DONE' works={this.props.worksDone}/>
 
           {/* Previously done */}
-          {this.props.past7Days.map((day_dones, index) =>
-            <div className="row border-bottom" key={`${index}`}>
-              <div className="col-1 border-right">
-                {`Previously (-${index + 1})`}
-              </div>
-              {day_dones.map((work) =>
-                <div className="col border p-0" key={work.id}>
-                  <Work {...work} />
-                </div>
-              )}
-            </div>
+          {this.props.past7Days.map((day_works_done, index) =>
+            <DayWorks key={`${index}`} name={`Previously (-${index + 1})`} works={day_works_done}/>
           )}
 
         </div>
       </React.Fragment>
     )
   }
-}
-
-// TODO: propTypes alias for `arrayOf.shape.type.oneOf.Task` ?
-TrackingTable.propTypes = {
-  tasks:
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.oneOf([Task])
-      })),
-  worksTodo:
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.oneOf([Work])
-      })),
-  worksDone:
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.oneOf([Work])
-      })),
-  past7Days:
-    PropTypes.arrayOf(
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          type: PropTypes.oneOf([Work])
-        })))
 }
 
 export default TrackingTable

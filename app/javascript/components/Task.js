@@ -5,7 +5,15 @@ import Work from "./Work"
 class Task extends React.Component {
   HEIGHT = '150px'
 
+  // TODO: this should not be componont state, but application state
   state = { errorMessage: '' }
+
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    color: PropTypes.string.isRequired,
+  }
 
   createWork = async () => {
     // TODO: we should try around the await, or tell jQuery not to raise in case of 404 or 500
@@ -44,13 +52,6 @@ class Task extends React.Component {
       </React.Fragment>
     )
   }
-}
-
-Task.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  color: PropTypes.string.isRequired,
 }
 
 export default Task
