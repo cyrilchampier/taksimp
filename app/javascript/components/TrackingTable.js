@@ -10,7 +10,11 @@ class TrackingTable extends React.Component {
     tasks: PropTypes.arrayOf(PropTypes.shape(Task.propTypes)).isRequired,
     worksTodo: DayWorks.worksPropTypes.isRequired,
     worksDone: DayWorks.worksPropTypes.isRequired,
-    past7Days: PropTypes.arrayOf(DayWorks.worksPropTypes.isRequired),
+    pastDays: PropTypes.arrayOf(
+      PropTypes.shape({
+        date: PropTypes.string,
+        works: DayWorks.worksPropTypes.isRequired
+      }))
   }
 
   render() {
@@ -37,9 +41,12 @@ class TrackingTable extends React.Component {
           <DayWorks name='DONE' works={this.props.worksDone}/>
 
           {/* Previously done */}
-          {this.props.past7Days.map((day_works_done, index) =>
-            <DayWorks key={`${index}`} name={`Previously (-${index + 1})`} works={day_works_done}/>
-          )}
+          {this.props.pastDays
+            .sort(({ date }) => date)
+            .reverse()
+            .map(({ date, works }) =>
+              <DayWorks key={date} name={date} works={works}/>
+            )}
 
         </div>
       </React.Fragment>

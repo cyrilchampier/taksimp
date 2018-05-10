@@ -7,12 +7,16 @@ class Work < ApplicationRecord
 
   validate :day_proportions_coherent_this_day, if: :done?
 
-  def self.past_days_done(days_count)
-    # TODO: BUG: group_by does skip a day of no work present.
-    # Plus, values removes the days, wich can be usefull
-    where('DATE(done_on) > ?', days_count.days.ago.to_date)
-      .group_by { |work| work.done_on.to_date }
-      .values
+  def self.done_between(start_date, stop_date)
+    start_date, stop_date = stop_date, start_date if start_date > stop_date
+    works_done_grouped =
+      Work
+        .where('DATE(done_on) >= ?', start_date.to_date)
+        .where('DATE(done_on) <= ?', stop_date.to_date)
+        .group_by { |work| work.done_on.to_date }
+    (start_date..stop_date)
+      .map { |day| [day, works_done_grouped[day] || []] }
+      .map { |day, works| { date: day, works: works } }
   end
 
   def done?
