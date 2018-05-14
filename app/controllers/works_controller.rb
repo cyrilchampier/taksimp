@@ -4,17 +4,15 @@ class WorksController < ApplicationController
     render_json_save(Work.new(work_params))
   end
 
-  def done
-    # work_update_params = params.require(:work).permit(:day_percentage)
+  def update
     work = Work.find(params.require(:id))
-    work.day_percentage = params[:work][:day_percentage].to_f
-    work.done_on = Time.current
+    work.assign_attributes(work_params)
     render_json_save(work)
   end
 
   private
 
   def work_params
-    params.require(:work).permit(:task_id, :description)
+    params.require(:work).permit(:task_id, :description, :day_percentage, :done_on)
   end
 end

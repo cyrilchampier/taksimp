@@ -36,10 +36,10 @@ class Work < ApplicationRecord
   def day_percentages_coherent_this_day
     works_done = Work.done_on(done_on.to_date)
     works_done = works_done.where.not(id: id) if id?
-    percentage_left = 100 - works_done.pluck(:day_percentage).sum
-    if percentage_left - day_percentage < 0
+    percentage_already_done = works_done.pluck(:day_percentage).sum
+    if percentage_already_done + day_percentage > 100
       errors[:day_percentage] <<
-        "Only Superman can work more than 100%, currently #{percentage_left}%, cannot add #{day_percentage}%."
+        "Only Superman can work more than 100%, currently #{percentage_already_done}%, cannot add #{day_percentage}%."
     end
   end
 end

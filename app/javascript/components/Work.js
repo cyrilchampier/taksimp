@@ -21,18 +21,23 @@ class Work extends React.Component {
   }
 
   // Returns { success, object, error_message }
-  static updateRailsInstance = ({ id, day_percentage }) => {
+  static updateRailsInstance = ({ id, day_percentage, done_on }) => {
     return jQuery.ajax({
       type: "PUT",
-      url: `/works/${id}/done`,
-      data: { work: { day_percentage } }
+      url: `/works/${id}`,
+      data: { work: { day_percentage, done_on } }
     })
   }
 
   done = async (day_percentage) => {
+    let update_params = { day_percentage: day_percentage }
+    console.log(this.props)
+    if (this.props.done_on === null) {
+      update_params.done_on = new Date().toJSON()
+    }
     // TODO: we should try around the await, or tell jQuery not to raise in case of 404 or 500
     let { success, object, error_message } =
-      await Work.updateRailsInstance({ id: this.props.id, day_percentage })
+      await Work.updateRailsInstance({ id: this.props.id, ...update_params })
     if (success) {
       window.location.reload()
     } else {
@@ -43,18 +48,15 @@ class Work extends React.Component {
   }
 
   doneButtons = () => {
-    // TODO: we should continue to display buttons to change it dynamically, even once already "done"
-    // if (this.props.done_on === null) {
-      return (
-        <div className="btn-group" role="group">
-          {[25, 50, 75].map((percentage) =>
-            <button key={percentage}
-                    type="button" className="btn btn-outline-light"
-                    onClick={() => this.done(percentage)}>{percentage}%</button>
-          )}
-        </div>
-      )
-    // }
+    return (
+      <div className="btn-group" role="group">
+        {[25, 50, 75].map((percentage) =>
+          <button key={percentage}
+                  type="button" className="btn btn-outline-light"
+                  onClick={() => this.done(percentage)}>{percentage}%</button>
+        )}
+      </div>
+    )
   }
 
   render() {
