@@ -15,11 +15,12 @@ class DayWorks extends React.Component {
     return (
       <React.Fragment>
         <div className="row border-bottom">
-          <div className="col-1 border-right">
+          <div className="col-2 border-right">
             {this.props.name}
           </div>
           {this.props.works.map((work) => {
-            let colClass = `col-${Math.ceil(work.day_percentage / 10)}`
+            // 2 cols are taken by the row header, it leaves 10 cols for our cards
+            let colClass = `col-${Math.floor(work.day_percentage / 10)}`
             return (<div className={`${colClass} border p-0`} key={work.id}>
               <Work {...work} />
             </div>)
