@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import EditableLabel from "./EditableLabel"
 
 class Work extends React.Component {
   HEIGHT = '100px'
@@ -29,7 +30,7 @@ class Work extends React.Component {
     })
   }
 
-  done = async (day_percentage) => {
+  _done = async (day_percentage) => {
     let update_params = { day_percentage: day_percentage }
     console.log(this.props)
     if (this.props.done_on === null) {
@@ -47,16 +48,24 @@ class Work extends React.Component {
     }
   }
 
-  doneButtons = () => {
+  _doneButtons = () => {
     return (
       <div className="btn-group" role="group">
         {[25, 50, 75].map((percentage) =>
           <button key={percentage}
                   type="button" className="btn btn-outline-light"
-                  onClick={() => this.done(percentage)}>{percentage}%</button>
+                  onClick={() => this._done(percentage)}>{percentage}%</button>
         )}
       </div>
     )
+  }
+
+  _handleFocusIn = (text) => {
+    console.log('Focused with text: ' + text);
+  }
+
+  _handleFocusOut = (text) => {
+    console.log('Left editor with text: ' + text);
   }
 
   render() {
@@ -66,10 +75,20 @@ class Work extends React.Component {
              style={{ backgroundColor: this.props.color, height: this.HEIGHT }}>
           <div className="row">
             <div className="col-12">
-              {this.props.description}
+              <EditableLabel text={this.props.description}
+                             labelClassName='myLabelClass'
+                             inputClassName='myInputClass'
+                             inputWidth='200px'
+                             inputHeight='25px'
+                             inputMaxLength={50}
+                             labelFontWeight='bold'
+                             inputFontWeight='bold'
+                             onFocusIn={this._handleFocusIn}
+                             onFocusOut={this._handleFocusOut}
+              />
             </div>
             <div className="col-12 p-0 align-self-end">
-              {this.doneButtons()}
+              {this._doneButtons()}
             </div>
           </div>
         </div>

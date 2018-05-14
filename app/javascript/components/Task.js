@@ -15,7 +15,7 @@ class Task extends React.Component {
     color: PropTypes.string.isRequired,
   }
 
-  createWork = async () => {
+  _createWork = async () => {
     // TODO: we should try around the await, or tell jQuery not to raise in case of 404 or 500
     let { success, object, error_message } =
       await Work.createRailsInstance({task_id: this.props.id, description: 'truc' })
@@ -45,7 +45,7 @@ class Task extends React.Component {
           <div>
             {this.props.description}
           </div>
-          <button className="btn btn-sm btn-outline-light" onClick={this.createWork}>
+          <button className="btn btn-sm btn-outline-light" onClick={this._createWork}>
             Work
           </button>
         </div>
