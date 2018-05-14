@@ -23,12 +23,16 @@ class Work < ApplicationRecord
     !!done_on
   end
 
+  def name
+    task&.name
+  end
+
   def color
     task&.color
   end
 
   def as_json(*)
-    super.merge(color: color)
+    super.merge(name: name, color: color)
   end
 
   private

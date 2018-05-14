@@ -7,6 +7,7 @@ class Work extends React.Component {
 
   static propTypes = {
     id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
     description: PropTypes.string,
     color: PropTypes.string.isRequired,
     done_on: PropTypes.string
@@ -22,11 +23,11 @@ class Work extends React.Component {
   }
 
   // Returns { success, object, error_message }
-  static updateRailsInstance = ({ id, day_percentage, done_on }) => {
+  static updateRailsInstance = ({ id, description, day_percentage, done_on }) => {
     return jQuery.ajax({
       type: "PUT",
       url: `/works/${id}`,
-      data: { work: { day_percentage, done_on } }
+      data: { work: { description, day_percentage, done_on } }
     })
   }
 
@@ -60,12 +61,17 @@ class Work extends React.Component {
     )
   }
 
-  _handleFocusIn = (text) => {
-    console.log('Focused with text: ' + text);
-  }
-
-  _handleFocusOut = (text) => {
-    console.log('Left editor with text: ' + text);
+  _onDescriptionChange = async (text) => {
+    console.log('Left editor with text: ' + text)
+    let { success, object, error_message } =
+      await Work.updateRailsInstance({ id: this.props.id, description: text })
+    if (success) {
+      window.location.reload()
+    } else {
+      console.log(error_message)
+      // TODO: this is not working, I do not setup a state on this object. Shoulb be transformed to a global alert.
+      // this.setState({ errorMessage: error_message })
+    }
   }
 
   render() {
@@ -74,17 +80,12 @@ class Work extends React.Component {
         <div className="container-fluid text-center border"
              style={{ backgroundColor: this.props.color, height: this.HEIGHT }}>
           <div className="row">
+            <div className="col-12 font-weight-bold">
+              {this.props.name}
+            </div>
             <div className="col-12">
               <EditableLabel text={this.props.description}
-                             labelClassName='myLabelClass'
-                             inputClassName='myInputClass'
-                             inputWidth='200px'
-                             inputHeight='25px'
-                             inputMaxLength={50}
-                             labelFontWeight='bold'
-                             inputFontWeight='bold'
-                             onFocusIn={this._handleFocusIn}
-                             onFocusOut={this._handleFocusOut}
+                             onFocusOut={this._onDescriptionChange}
               />
             </div>
             <div className="col-12 p-0 align-self-end">

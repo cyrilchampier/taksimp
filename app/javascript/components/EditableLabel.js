@@ -25,10 +25,23 @@ class EditableLabel extends React.Component {
     onFocusOut: PropTypes.func
   }
 
-  state = {
-    isEditing: this.props.isEditing || false,
-    text: this.props.text || "",
+  static defaultProps = {
+    isEditing: false,
+    text: '',
+    labelClassName: '',
+    inputClassName: '',
+    inputWidth: '200px',
+    inputHeight: '25px',
+    inputMaxLength: 50,
+    labelFontWeight: 'normal',
+    inputFontWeight: 'normal',
   }
+
+  state = {
+    isEditing: this.props.isEditing,
+    text: this.props.text,
+  }
+
 
   _handleFocus = () => {
     if (this.state.isEditing) {
@@ -58,14 +71,6 @@ class EditableLabel extends React.Component {
                if (event.keyCode === 13) {
                  this._handleFocus()
                }
-             }}
-             style={{
-               width: this.props.inputWidth,
-               height: this.props.inputHeight,
-               fontSize: this.props.inputFontSize,
-               fontWeight: this.props.inputFontWeight,
-               borderWidth: this.props.inputBorderWidth,
-
              }}
              maxLength={this.props.inputMaxLength}
              placeholder={this.props.inputPlaceHolder}

@@ -26,7 +26,6 @@ class Task extends React.Component {
     }
   }
 
-  // TODO: that component should be a card, to have a nicer presentation than the current row-cols
   render() {
     return (
       <React.Fragment>
