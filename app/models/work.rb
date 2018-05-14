@@ -5,7 +5,7 @@ class Work < ApplicationRecord
   scope :done, -> { where.not(done_on: nil) }
   scope :done_on, -> (date) { where('DATE(done_on) = ?', date.to_date) }
 
-  validate :day_proportions_coherent_this_day, if: :done?
+  validate :day_percentages_coherent_this_day, if: :done?
 
   def self.done_between(start_date, stop_date)
     start_date, stop_date = stop_date, start_date if start_date > stop_date
@@ -33,7 +33,7 @@ class Work < ApplicationRecord
 
   private
 
-  def day_proportions_coherent_this_day
+  def day_percentages_coherent_this_day
     works_done = Work.done_on(done_on.to_date)
     works_done = works_done.where.not(id: id) if id?
     percentage_left = 100 - works_done.pluck(:day_percentage).sum
