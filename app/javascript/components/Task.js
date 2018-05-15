@@ -5,7 +5,7 @@ import Work from "./Work"
 class Task extends React.Component {
   HEIGHT = '150px'
 
-  // TODO: this should not be componont state, but application state
+  // TODO: this should not be component state, but application state
   state = { errorMessage: '' }
 
   static propTypes = {
@@ -16,9 +16,8 @@ class Task extends React.Component {
   }
 
   _createWork = async () => {
-    // TODO: we should try around the await, or tell jQuery not to raise in case of 404 or 500
     let { success, object, error_message } =
-      await Work.createRailsInstance({task_id: this.props.id, description: 'truc' })
+      await Work.createRailsInstance({ task_id: this.props.id, description: 'truc' })
     if (success) {
       window.location.reload()
     } else {

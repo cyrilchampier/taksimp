@@ -14,36 +14,54 @@ class Work extends React.Component {
   }
 
   // Returns { success, object, error_message }
-  static createRailsInstance = ({ task_id, description }) => {
-    return jQuery.ajax({
-      type: "POST",
-      url: "/works",
-      data: { work: { task_id, description } }
-    })
+  static createRailsInstance = async ({ task_id, description }) => {
+    try {
+      return await jQuery.ajax({
+        type: "POST",
+        url: "/works",
+        data: { work: { task_id, description } }
+      })
+    }
+    catch (error) {
+      // TODO: this processing should be factorised in a AjaxHelper class
+      if (error.responseJSON) {
+        return error.responseJSON
+      } else {
+        return { success: false, object: undefined, error_message: error.responseText }
+      }
+    }
   }
 
   // Returns { success, object, error_message }
-  static updateRailsInstance = ({ id, description, day_percentage, done_on }) => {
-    return jQuery.ajax({
-      type: "PUT",
-      url: `/works/${id}`,
-      data: { work: { description, day_percentage, done_on } }
-    })
+  static updateRailsInstance = async ({ id, description, day_percentage, done_on }) => {
+    try {
+      return await jQuery.ajax({
+        type: "PUT",
+        url: `/works/${id}`,
+        data: { work: { description, day_percentage, done_on } }
+      })
+    }
+    catch (error) {
+      // TODO: this processing should be factorised in a AjaxHelper class
+      if (error.responseJSON) {
+        return error.responseJSON
+      } else {
+        return { success: false, object: undefined, error_message: error.responseText }
+      }
+    }
   }
 
   _done = async (day_percentage) => {
     let update_params = { day_percentage: day_percentage }
-    console.log(this.props)
-    if (this.props.done_on === null) {
+    if (!this.props.done_on) {
       update_params.done_on = new Date().toJSON()
     }
-    // TODO: we should try around the await, or tell jQuery not to raise in case of 404 or 500
     let { success, object, error_message } =
       await Work.updateRailsInstance({ id: this.props.id, ...update_params })
     if (success) {
       window.location.reload()
     } else {
-      console.log(error_message)
+      console.error(error_message)
       // TODO: this is not working, I do not setup a state on this object. Shoulb be transformed to a global alert.
       // this.setState({ errorMessage: error_message })
     }
