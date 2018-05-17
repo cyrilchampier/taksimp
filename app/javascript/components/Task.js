@@ -15,6 +15,25 @@ class Task extends React.Component {
     color: PropTypes.string.isRequired,
   }
 
+  // Returns { success, object, error_message }
+  static updateRailsInstance = async ({ id, done_on }) => {
+    try {
+      return await jQuery.ajax({
+        type: "PUT",
+        url: `/tasks/${id}`,
+        data: { task: { done_on } }
+      })
+    }
+    catch (error) {
+      // TODO: this processing should be factorised in a AjaxHelper class
+      if (error.responseJSON) {
+        return error.responseJSON
+      } else {
+        return { success: false, object: undefined, error_message: error.responseText }
+      }
+    }
+  }
+
   _createWork = async () => {
     let { success, object, error_message } =
       await Work.createRailsInstance({ task_id: this.props.id, description: 'truc' })
@@ -23,6 +42,29 @@ class Task extends React.Component {
     } else {
       this.setState({ errorMessage: error_message })
     }
+  }
+
+  _finishTask = async () => {
+    let { success, object, error_message } =
+      await Task.updateRailsInstance({ id: this.props.id, done_on: new Date().toJSON() })
+    if (success) {
+      window.location.reload()
+    } else {
+      this.setState({ errorMessage: error_message })
+    }
+  }
+
+  _doneButtonsFragment = () => {
+    return (
+      <div className="btn-group" role="group">
+        <button type="button" className="btn btn-sm btn-outline-light" onClick={this._createWork}>
+          Work
+        </button>
+        <button type="button" className="btn btn-sm btn-outline-light" onClick={this._finishTask}>
+          Done
+        </button>
+      </div>
+    )
   }
 
   render() {
@@ -43,9 +85,7 @@ class Task extends React.Component {
           <div>
             {this.props.description}
           </div>
-          <button className="btn btn-sm btn-outline-light" onClick={this._createWork}>
-            Work
-          </button>
+          {this._doneButtonsFragment()}
         </div>
       </React.Fragment>
     )

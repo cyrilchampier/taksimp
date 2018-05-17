@@ -51,7 +51,7 @@ class Work extends React.Component {
     }
   }
 
-  _done = async (day_percentage) => {
+  _setPercentage = async (day_percentage) => {
     let update_params = { day_percentage: day_percentage }
     if (!this.props.done_on) {
       update_params.done_on = new Date().toJSON()
@@ -67,13 +67,13 @@ class Work extends React.Component {
     }
   }
 
-  _doneButtons = () => {
+  _doneButtonsFragment = () => {
     return (
       <div className="btn-group" role="group">
         {[25, 50, 75].map((percentage) =>
           <button key={percentage}
                   type="button" className="btn btn-outline-light"
-                  onClick={() => this._done(percentage)}>{percentage}%</button>
+                  onClick={() => this._setPercentage(percentage)}>{percentage}%</button>
         )}
       </div>
     )
@@ -107,7 +107,7 @@ class Work extends React.Component {
               />
             </div>
             <div className="col-12 p-0 align-self-end">
-              {this._doneButtons()}
+              {this._doneButtonsFragment()}
             </div>
           </div>
         </div>

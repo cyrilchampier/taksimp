@@ -1,7 +1,7 @@
 <%= react_component("Navbar", { activePage: 'Tracking' }) %>
 
 <%= react_component("TrackingTable", {
-    tasks: Task.all,
+    tasks: Task.pending.all,
     worksTodo: Work.pending.all,
     worksDone: Work.done_on(Date.today).all,
     pastDays: Work.done_between(Date.yesterday, Date.today -  7)
