@@ -1,6 +1,6 @@
 # TODO
 
-## Work description history
+## Factorize Ajax calls
 ## Objects order in views
 ## Have a global error view/handler
 

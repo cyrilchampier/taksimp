@@ -13,8 +13,9 @@ class Work < ApplicationRecord
       Work
         .where('DATE(done_on) >= ?', start_date.to_date)
         .where('DATE(done_on) <= ?', stop_date.to_date)
+        .sort_by(&:id)
         .group_by { |work| work.done_on.to_date }
-    (start_date..stop_date)
+   (start_date..stop_date)
       .map { |day| [day, works_done_grouped[day] || []] }
       .map { |day, works| { date: day, works: works } }
   end

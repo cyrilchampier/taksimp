@@ -1,9 +1,9 @@
 <%= react_component("layouts/Navbar", { activePage: 'Tracking' }) %>
 
 <%= react_component("layouts/TrackingTable", {
-    tasks: Task.pending.all,
-    worksTodo: Work.pending.all,
-    worksDone: Work.done_on(Date.today).all,
+    tasks: Task.pending.sort,
+    worksTodo: Work.pending.sort,
+    worksDone: Work.done_on(Date.today).sort,
     pastDays: Work.done_between(Date.yesterday, Date.today -  7)
 })
 %>
