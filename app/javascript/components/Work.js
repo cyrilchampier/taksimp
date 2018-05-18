@@ -59,6 +59,7 @@ class Work extends React.Component {
     let { success, object, error_message } =
       await Work.updateRailsInstance({ id: this.props.id, ...update_params })
     if (success) {
+      // TODO: use rails action cable instead of this weird page reload
       window.location.reload()
     } else {
       console.error(error_message)
