@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Work from "./Work"
+import Work from "models/Work"
+import EditableLabel from "layouts/EditableLabel"
 
 class Task extends React.Component {
   HEIGHT = '150px'
@@ -83,7 +84,9 @@ class Task extends React.Component {
             {this.props.name}
           </div>
           <div>
-            {this.props.description}
+            <EditableLabel text={this.props.description}
+                           onFocusOut={this._onDescriptionChange}
+            />
           </div>
           {this._doneButtonsFragment()}
         </div>

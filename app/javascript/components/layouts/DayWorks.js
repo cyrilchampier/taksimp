@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Work from "../models/Work";
+import Work from "models/Work";
 
 class DayWorks extends React.Component {
 
