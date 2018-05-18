@@ -38,7 +38,7 @@ class Task extends React.Component {
 
   _createWork = async () => {
     let { success, object, error_message } =
-      await Work.createRailsInstance({ task_id: this.props.id, description: 'truc' })
+      await Work.createRailsInstance({ task_id: this.props.id })
     if (success) {
       window.location.reload()
     } else {

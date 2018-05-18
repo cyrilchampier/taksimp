@@ -21,6 +21,6 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:task_id, :description, :day_percentage, :done_on)
+    params.require(:work).permit(:task_id, :day_percentage, :done_on)
   end
 end

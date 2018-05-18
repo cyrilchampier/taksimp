@@ -39,6 +39,7 @@ class Work < ApplicationRecord
   private
 
   def day_percentages_coherent_this_day
+    return if day_percentage.blank?
     works_done = Work.done_on(done_on.to_date)
     works_done = works_done.where.not(id: id) if id?
     percentage_already_done = works_done.pluck(:day_percentage).sum
