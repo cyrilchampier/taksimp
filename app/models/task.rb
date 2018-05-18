@@ -3,7 +3,7 @@ class Task < ApplicationRecord
 
   # Should validate that sum(work.day_percentage) < 100
   has_many :works
-  
+
   scope :pending, -> { where(done_on: nil) }
 
   def color
