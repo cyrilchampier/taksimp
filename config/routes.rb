@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'tracking/show'
 
   resources :tasks
-  resources :works
+  resources :works do
+    member do
+      put :descriptions
+    end
+  end
 
   root 'tracking#show'
 end

@@ -10,6 +10,14 @@ class WorksController < ApplicationController
     render_json_save(work)
   end
 
+  def descriptions
+    return if params[:description].blank?
+    work = Work.find(params.require(:id))
+    # TODO: use strong params
+    work.descriptions << params[:description]
+    render_json_save(work)
+  end
+
   private
 
   def work_params

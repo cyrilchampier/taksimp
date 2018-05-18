@@ -1,6 +1,8 @@
 # TODO
 
 ## Work description history
+## Objects order in views
+## Have a global error view/handler
 
 
 

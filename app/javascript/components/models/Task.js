@@ -55,7 +55,7 @@ class Task extends React.Component {
     }
   }
 
-  // TODO: merge with `Work#_onTextChange()`
+  // TODO: merge with `Work#_onTextChange()` ?
   _onTextChange = async (fieldName, text) => {
     console.log('Left editor with text: ' + text)
     let params = { id: this.props.id }

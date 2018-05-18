@@ -42,7 +42,6 @@ class EditableLabel extends React.Component {
     text: this.props.text,
   }
 
-
   _handleFocus = () => {
     if (this.state.isEditing) {
       this.props.onFocusOut && this.props.onFocusOut(this.state.text)
@@ -59,6 +58,7 @@ class EditableLabel extends React.Component {
 
   _editionModeLabel = () => {
     return (
+      // TODO: use the Input component
       <input type="text"
              className={this.props.inputClassName}
              ref={(input) => {

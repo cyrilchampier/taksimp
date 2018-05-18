@@ -1,10 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import EditableLabel from "layouts/EditableLabel"
+import Input from "layouts/Input"
 
 class Work extends React.Component {
-  HEIGHT = '100px'
-
   static propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -33,23 +31,38 @@ class Work extends React.Component {
   }
 
   // Returns { success, object, error_message }
-  static updateRailsInstance = async ({ id, description, day_percentage, done_on }) => {
-    try {
-      return await jQuery.ajax({
-        type: "PUT",
-        url: `/works/${id}`,
-        data: { work: { description, day_percentage, done_on } }
-      })
-    }
-    catch (error) {
-      // TODO: this processing should be factorised in a AjaxHelper class
-      if (error.responseJSON) {
-        return error.responseJSON
-      } else {
-        return { success: false, object: undefined, error_message: error.responseText }
+  static updateRailsInstance =
+    async (id,
+           attributes,
+           { route } = {}) => {
+      try {
+        let url = `/works/${id}`
+        if (route) {
+          url += `/${route}`
+        }
+        let ajaxParams = {
+          type: "PUT",
+          url,
+          data: attributes
+        }
+        // TODO: error processing should be factorised in a AjaxHelper class
+        let response = await jQuery.ajax(ajaxParams)
+        if (!response) {
+          throw new Error(`'no_content' received from ${JSON.stringify(ajaxParams)}`)
+        }
+        // TODO: we should validate this response format
+        // let { success, object, error_message } = response
+        return response
+      }
+      catch (error) {
+        if (error.responseJSON) {
+          return error.responseJSON
+        } else {
+          let error_message = error.responseText || error
+          return { success: false, object: undefined, error_message }
+        }
       }
     }
-  }
 
   _setPercentage = async (day_percentage) => {
     let update_params = { day_percentage: day_percentage }
@@ -57,14 +70,16 @@ class Work extends React.Component {
       update_params.done_on = new Date().toJSON()
     }
     let { success, object, error_message } =
-      await Work.updateRailsInstance({ id: this.props.id, ...update_params })
+      await Work.updateRailsInstance(this.props.id, { work: update_params })
     if (success) {
       // TODO: use rails action cable instead of this weird page reload
       window.location.reload()
-    } else {
+    } else if (error_message) {
       console.error(error_message)
       // TODO: this is not working, I do not setup a state on this object. Shoulb be transformed to a global alert.
       // this.setState({ errorMessage: error_message })
+    } else {
+      console.error('Unknown Ajax error:', { success, object, error_message })
     }
   }
 
@@ -80,14 +95,17 @@ class Work extends React.Component {
     )
   }
 
-  _onDescriptionChange = async (text) => {
-    console.log('Left editor with text: ' + text)
+  _onTextChange = async (text) => {
     let { success, object, error_message } =
-      await Work.updateRailsInstance({ id: this.props.id, description: text })
+      await Work.updateRailsInstance(
+        this.props.id,
+        { description: text },
+        { route: 'descriptions' })
     if (success) {
       window.location.reload()
     } else {
-      console.log(error_message)
+      // TODO: move that to global error now
+      console.error(error_message)
       // TODO: this is not working, I do not setup a state on this object. Shoulb be transformed to a global alert.
       // this.setState({ errorMessage: error_message })
     }
@@ -101,16 +119,19 @@ class Work extends React.Component {
       <React.Fragment>
         <div
           className="d-flex flex-column p-2"
-          style={{ backgroundColor: this._computeBackgroundColor(), height: this.HEIGHT }}
+          style={{ backgroundColor: this._computeBackgroundColor() }}
         >
 
           <div className="font-weight-bold">
             {this.props.name}
           </div>
           <div>
-            <EditableLabel text={this.props.description}
-                           onFocusOut={this._onDescriptionChange}
-            />
+            {this.props.descriptions
+              .map((description, index) =>
+                <div key={index}>{description}</div>
+              )
+            }
+            <Input onFocusOut={this._onTextChange} />
           </div>
 
           <div className="mt-auto">
