@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import EditableLabel from "./EditableLabel"
+import EditableLabel from "../layouts/EditableLabel"
 
 class Work extends React.Component {
   HEIGHT = '100px'
