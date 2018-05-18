@@ -16,13 +16,14 @@ class Task extends React.Component {
     color: PropTypes.string.isRequired,
   }
 
+  // TODO: factorise with Work.updateRailsInstance
   // Returns { success, object, error_message }
-  static updateRailsInstance = async ({ id, done_on, description }) => {
+  static updateRailsInstance = async ({ id, done_on, name, description }) => {
     try {
       return await jQuery.ajax({
         type: "PUT",
         url: `/tasks/${id}`,
-        data: { task: { done_on, description } }
+        data: { task: { done_on, name, description } }
       })
     }
     catch (error) {
@@ -58,8 +59,7 @@ class Task extends React.Component {
   // TODO: merge with `Work#_onTextChange()` ?
   _onTextChange = async (fieldName, text) => {
     console.log('Left editor with text: ' + text)
-    let params = { id: this.props.id }
-    params[fieldName] = text
+    let params = { id: this.props.id, [fieldName]: text }
     let { success, object, error_message } =
       await Task.updateRailsInstance(params)
     if (success) {
