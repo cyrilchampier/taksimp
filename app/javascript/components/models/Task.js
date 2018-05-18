@@ -17,12 +17,12 @@ class Task extends React.Component {
   }
 
   // Returns { success, object, error_message }
-  static updateRailsInstance = async ({ id, done_on }) => {
+  static updateRailsInstance = async ({ id, done_on, description }) => {
     try {
       return await jQuery.ajax({
         type: "PUT",
         url: `/tasks/${id}`,
-        data: { task: { done_on } }
+        data: { task: { done_on, description } }
       })
     }
     catch (error) {
@@ -55,6 +55,22 @@ class Task extends React.Component {
     }
   }
 
+  // TODO: merge with `Work#_onTextChange()`
+  _onTextChange = async (fieldName, text) => {
+    console.log('Left editor with text: ' + text)
+    let params = { id: this.props.id }
+    params[fieldName] = text
+    let { success, object, error_message } =
+      await Task.updateRailsInstance(params)
+    if (success) {
+      window.location.reload()
+    } else {
+      console.log(error_message)
+      // TODO: this is not working, I do not setup a state on this object. Shoulb be transformed to a global alert.
+      // this.setState({ errorMessage: error_message })
+    }
+  }
+
   _doneButtonsFragment = () => {
     return (
       <div className="btn-group" role="group">
@@ -80,12 +96,13 @@ class Task extends React.Component {
             {this.state.errorMessage}
           </div>
           }
-          <div className="font-weight-bold">
-            {this.props.name}
-          </div>
+          <EditableLabel text={this.props.name}
+                         labelClassName="font-weight-bold"
+                         onFocusOut={(text) => this._onTextChange('name', text)}
+          />
           <div>
             <EditableLabel text={this.props.description}
-                           onFocusOut={this._onDescriptionChange}
+                           onFocusOut={(text) => this._onTextChange('description', text)}
             />
           </div>
           {this._doneButtonsFragment()}
