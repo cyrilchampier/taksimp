@@ -1,8 +1,6 @@
 # TODO
 
 ## Work description history
-## Change Task name / description
-## Change Project color
 
 
 

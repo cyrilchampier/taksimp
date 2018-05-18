@@ -73,7 +73,7 @@ class Work extends React.Component {
       <div className="btn-group" role="group">
         {[25, 50, 75].map((percentage) =>
           <button key={percentage}
-                  type="button" className="btn btn-outline-light"
+                  type="button" className="btn btn-sm text-primary"
                   onClick={() => this._setPercentage(percentage)}>{percentage}%</button>
         )}
       </div>
@@ -93,23 +93,28 @@ class Work extends React.Component {
     }
   }
 
+  _computeBackgroundColor = () => this.props.color + '80'
+
+
   render() {
     return (
       <React.Fragment>
-        <div className="container-fluid text-center border"
-             style={{ backgroundColor: this.props.color, height: this.HEIGHT }}>
-          <div className="row">
-            <div className="col-12 font-weight-bold">
-              {this.props.name}
-            </div>
-            <div className="col-12">
-              <EditableLabel text={this.props.description}
-                             onFocusOut={this._onDescriptionChange}
-              />
-            </div>
-            <div className="col-12 p-0 align-self-end">
-              {this._doneButtonsFragment()}
-            </div>
+        <div
+          className="d-flex flex-column p-2"
+          style={{ backgroundColor: this._computeBackgroundColor(), height: this.HEIGHT }}
+        >
+
+          <div className="font-weight-bold">
+            {this.props.name}
+          </div>
+          <div>
+            <EditableLabel text={this.props.description}
+                           onFocusOut={this._onDescriptionChange}
+            />
+          </div>
+
+          <div className="mt-auto">
+            {this._doneButtonsFragment()}
           </div>
         </div>
       </React.Fragment>

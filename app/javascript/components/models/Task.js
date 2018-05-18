@@ -74,38 +74,51 @@ class Task extends React.Component {
   _doneButtonsFragment = () => {
     return (
       <div className="btn-group" role="group">
-        <button type="button" className="btn btn-sm btn-outline-light" onClick={this._createWork}>
+        <button type="button" className="btn btn-sm text-primary" onClick={this._createWork}>
           Work
         </button>
-        <button type="button" className="btn btn-sm btn-outline-light" onClick={this._finishTask}>
+        <button type="button" className="btn btn-sm text-success" onClick={this._finishTask}>
           Done
         </button>
       </div>
     )
   }
 
+  _computeBackgroundColor = () => this.props.color + '80'
+
   render() {
     return (
       <React.Fragment>
-        <div className="text-center" style={{
-          backgroundColor: this.props.color,
-          height: this.HEIGHT
-        }}>
+        <div
+          className="d-flex flex-column p-2"
+          style={{
+            backgroundColor: this._computeBackgroundColor(),
+            height: this.HEIGHT
+          }}>
+
           {this.state.errorMessage &&
           <div className="alert alert-danger position-absolute w-100" role="alert">
             {this.state.errorMessage}
           </div>
           }
-          <EditableLabel text={this.props.name}
-                         labelClassName="font-weight-bold"
-                         onFocusOut={(text) => this._onTextChange('name', text)}
-          />
+
           <div>
-            <EditableLabel text={this.props.description}
-                           onFocusOut={(text) => this._onTextChange('description', text)}
+            <EditableLabel
+              text={this.props.name}
+              labelClassName="font-weight-bold"
+              onFocusOut={(text) => this._onTextChange('name', text)}
             />
           </div>
-          {this._doneButtonsFragment()}
+          <div>
+            <EditableLabel
+              text={this.props.description}
+              onFocusOut={(text) => this._onTextChange('description', text)}
+            />
+          </div>
+
+          <div className="mt-auto">
+            {this._doneButtonsFragment()}
+          </div>
         </div>
       </React.Fragment>
     )
