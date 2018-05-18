@@ -15,6 +15,7 @@
       .ts-task
         = "#{task.name}: #{task.description}"
 
+    / How can I use these nice rails form helper in react ?
     = form_with(model: project.tasks.build) do |task_form|
       = task_form.hidden_field :project_id
       = task_form.text_field :name
