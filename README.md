@@ -1,7 +1,6 @@
 # TODO
 
-## Setup ci
-## Add a way to manager projects
+## Add a way to manage projects
 ## Factorize Ajax calls
 ## Have a global error view/handler
 
