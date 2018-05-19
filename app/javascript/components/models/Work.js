@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Input from "layouts/Input"
+import Input from "components/basic_objects/Input"
 
 class Work extends React.Component {
   static propTypes = {

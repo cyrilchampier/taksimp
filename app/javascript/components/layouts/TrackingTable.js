@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Task from "models/Task"
-import DayWorks from "layouts/DayWorks"
+import Task from "components/models/Task"
+import DayWorks from "components/layouts/DayWorks"
 
 
 class TrackingTable extends React.Component {
