@@ -2,7 +2,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 
 # TODO: not working on travis, should check why
-# Capybara.javascript_driver = :selenium_chrome
+Capybara.javascript_driver = :selenium_chrome_headless
 
 # Capybara.register_driver :chrome do |app|
 #   options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu])
