@@ -16,6 +16,8 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
+  * https://getbootstrap.com/
+  * http://guides.rubyonrails.org/
 
 * Configuration
 
