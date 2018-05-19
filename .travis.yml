@@ -2,8 +2,12 @@ env:
   global:
   - PGPORT=5433
   bundler_args: --without production
-services:
-  - postgresql
+addons:
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10
+  postgresql: 10
 before_script:
   - psql -c 'create database db_test;' -U postgres
 
