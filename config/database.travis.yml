@@ -5,3 +5,4 @@ test:
   host: localhost
   port: 5432
   database: db_test
+  username: postgres
