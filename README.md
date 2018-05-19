@@ -19,6 +19,8 @@ Things you may want to cover:
 * System dependencies
   * https://getbootstrap.com/
   * http://guides.rubyonrails.org/
+  * https://github.com/teamcapybara/capybara
+  * https://github.com/rspec/rspec
 
 * Configuration
 
