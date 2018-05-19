@@ -74,7 +74,6 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  gem 'geckodriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
