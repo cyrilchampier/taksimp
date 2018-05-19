@@ -1,8 +1,9 @@
-bundler_args: --without production
+env:
+  global:
+  - PGPORT=5433
+  bundler_args: --without production
 services:
   - postgresql
 before_script:
   - psql -c 'create database db_test;' -U postgres
-env:
-  global:
-  - PGPORT=5433
+
