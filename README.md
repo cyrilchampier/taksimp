@@ -1,7 +1,8 @@
 # TODO
 
+## Push in production
+## Setup ci
 ## Factorize Ajax calls
-## Objects order in views
 ## Have a global error view/handler
 
 
