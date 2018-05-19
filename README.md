@@ -1,7 +1,7 @@
 # TODO
 
-## Push in production
 ## Setup ci
+## Add a way to manager projects
 ## Factorize Ajax calls
 ## Have a global error view/handler
 
@@ -31,5 +31,6 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+  * https://taksimp.herokuapp.com/
 
 * ...
