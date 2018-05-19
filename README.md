@@ -1,7 +1,7 @@
 # TODO
 
+## Add a way to manage projects
 ## Factorize Ajax calls
-## Objects order in views
 ## Have a global error view/handler
 
 
@@ -18,6 +18,8 @@ Things you may want to cover:
 * System dependencies
   * https://getbootstrap.com/
   * http://guides.rubyonrails.org/
+  * https://github.com/teamcapybara/capybara
+  * https://github.com/rspec/rspec
 
 * Configuration
 
@@ -30,5 +32,6 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+  * https://taksimp.herokuapp.com/
 
 * ...

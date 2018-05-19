@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Work from "models/Work"
-import EditableLabel from "layouts/EditableLabel"
+import Work from "components/models/Work"
+import EditableLabel from "components/basic_objects/EditableLabel"
 
 class Task extends React.Component {
   HEIGHT = '150px'
