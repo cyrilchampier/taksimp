@@ -1,5 +1,8 @@
+[![Build Status](https://travis-ci.com/cyrilchampier/taksimp.svg?branch=master)](https://travis-ci.com/cyrilchampier/taksimp)
+
 # TODO
 
+## Test coverage improvments
 ## Add a way to manage projects
 ## Factorize Ajax calls
 ## Have a global error view/handler

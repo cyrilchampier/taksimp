@@ -1,16 +1,35 @@
 language: ruby
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=495740a0fd1b2036d791b2c66abccc24c796c567aca79aca2777693183ce7dfc
+
 addons:
   chrome: stable
+services:
+  - postgresql
 
 cache: bundler
 bundler_args: --without production
-services:
-  - postgresql
+
 before_script:
+  # Prepare database
   - psql -c 'create database db_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
+
+  # Compile rails assets
   - bundle exec rails assets:precompile
   - yarn install
   - bundle exec rails webpacker:compile
 
+  # Prepare code climate
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - bundle exec rspec
+
+after_script:
+  # Upload results to code climate
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
