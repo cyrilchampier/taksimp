@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.com/cyrilchampier/taksimp.svg?branch=master)](https://travis-ci.com/cyrilchampier/taksimp)
+[![Maintainability](https://api.codeclimate.com/v1/badges/254474d0efa074e1955e/maintainability)](https://codeclimate.com/github/cyrilchampier/taksimp/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/254474d0efa074e1955e/test_coverage)](https://codeclimate.com/github/cyrilchampier/taksimp/test_coverage)
 
 # TODO
 
