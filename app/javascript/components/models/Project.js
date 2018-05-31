@@ -2,10 +2,12 @@ import React from "react"
 import PropTypes from "prop-types"
 
 class Project extends React.Component {
-  render () {
+  render() {
     return (
       <React.Fragment>
-        Name: {this.props.name}
+        <div className="ts-project">
+          Name: {this.props.name}
+        </div>
       </React.Fragment>
     );
   }

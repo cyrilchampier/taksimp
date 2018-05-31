@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Work from "components/models/Work"
+import QueryHelper from "QueryHelper"
 import EditableLabel from "components/basic_objects/EditableLabel"
 
 class Task extends React.Component {
@@ -16,29 +16,9 @@ class Task extends React.Component {
     color: PropTypes.string.isRequired,
   }
 
-  // TODO: factorise with Work.updateRailsInstance
-  // Returns { success, object, error_message }
-  static updateRailsInstance = async ({ id, done_on, name, description }) => {
-    try {
-      return await jQuery.ajax({
-        type: "PUT",
-        url: `/tasks/${id}`,
-        data: { task: { done_on, name, description } }
-      })
-    }
-    catch (error) {
-      // TODO: this processing should be factorised in a AjaxHelper class
-      if (error.responseJSON) {
-        return error.responseJSON
-      } else {
-        return { success: false, object: undefined, error_message: error.responseText }
-      }
-    }
-  }
-
   _createWork = async () => {
     let { success, object, error_message } =
-      await Work.createRailsInstance({ task_id: this.props.id })
+      await QueryHelper.create('work', { work: { task_id: this.props.id } })
     if (success) {
       window.location.reload()
     } else {
@@ -48,7 +28,7 @@ class Task extends React.Component {
 
   _finishTask = async () => {
     let { success, object, error_message } =
-      await Task.updateRailsInstance({ id: this.props.id, done_on: new Date().toJSON() })
+      await QueryHelper.update('task', this.props.id, { task: { done_on: new Date().toJSON() } })
     if (success) {
       window.location.reload()
     } else {
@@ -56,12 +36,9 @@ class Task extends React.Component {
     }
   }
 
-  // TODO: merge with `Work#_onTextChange()` ?
   _onTextChange = async (fieldName, text) => {
-    console.log('Left editor with text: ' + text)
-    let params = { id: this.props.id, [fieldName]: text }
     let { success, object, error_message } =
-      await Task.updateRailsInstance(params)
+      await QueryHelper.update('task', this.props.id, { task: { [fieldName]: text } })
     if (success) {
       window.location.reload()
     } else {
@@ -90,7 +67,7 @@ class Task extends React.Component {
     return (
       <React.Fragment>
         <div
-          className="d-flex flex-column p-2"
+          className='d-flex flex-column p-2 ts-task'
           style={{
             backgroundColor: this._computeBackgroundColor(),
             height: this.HEIGHT

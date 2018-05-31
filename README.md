@@ -4,10 +4,18 @@
 
 # TODO
 
-## Test coverage improvments
-## Add a way to manage projects
-## Factorize Ajax calls
-## Have a global error view/handler
+## Feature: be able to move work between today and yesterday (and more ?). If you forgot to complete it yesterday.
+## Feature: be able to add todos for tomorrow (next step in task ?)
+## Add rubocop and commit hooks
+## Feature: create works directly related to a project (like Duty-Sentry just for the day ?)
+## Chore: Test coverage improvements
+## Chore: Tests && coverage on JS
+## Feature: 
+* Done works with 0% (ex: HIS-18: wait for pm validation)
+* OR add status to task ? But anyway, we should have a way to says 'feature validated' without putting % ?
+## Feature: Add a way to manage projects
+## Chore: Factorize Ajax calls
+## Feature: Have a global error view/handler
 
 
 

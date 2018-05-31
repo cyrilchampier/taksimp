@@ -57,7 +57,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
+  # Finally I can reuse this rspec framework!
   gem 'rspec-rails'
+
+  # Help in building models
+  gem 'factory_bot_rails'
+
+  # Breakpoints are usefull
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -77,6 +85,9 @@ group :test do
 
   # Compute test coverage
   gem 'simplecov', require: false
+
+  # Time travel
+  gem 'timecop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

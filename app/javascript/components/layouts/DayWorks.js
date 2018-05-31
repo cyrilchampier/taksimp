@@ -14,7 +14,7 @@ class DayWorks extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="row border-bottom">
+        <div className='row border-bottom ts-day-works'>
           <div className="col-2 border-right">
             {this.props.name}
           </div>

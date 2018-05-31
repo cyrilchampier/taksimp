@@ -20,7 +20,7 @@ class TrackingTable extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container-fluid">
+        <div className="container-fluid ts-tracking-table">
 
           {/* Pending tasks */}
           <div className="row border-top border-bottom">

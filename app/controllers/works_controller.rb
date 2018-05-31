@@ -5,20 +5,26 @@ class WorksController < ApplicationController
   end
 
   def update
-    work = Work.find(params.require(:id))
     work.assign_attributes(work_params)
     render_json_save(work)
   end
 
+  def destroy
+    render_json_destroy(work)
+  end
+
   def descriptions
     return if params[:description].blank?
-    work = Work.find(params.require(:id))
     # TODO: use strong params
     work.descriptions << params[:description]
     render_json_save(work)
   end
 
   private
+
+  def work
+    @_work ||= Work.find(params.require(:id))
+  end
 
   def work_params
     params.require(:work).permit(:task_id, :day_percentage, :done_on)
